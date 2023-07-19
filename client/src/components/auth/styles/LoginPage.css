@@ -1,0 +1,42 @@
+.googleLogin{
+    transition: all 0.8s;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+.googleLogin:hover{
+    box-shadow: 4px 4px 14px black;
+    rotate:360deg;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.loginDiv{
+    transition:all 0.7s;
+    animation: slideIn 1s ease;
+}
+.loginDiv:hover{
+    scale:1.2;
+    transform: translateY(30px);
+}
+.loginDiv p{
+    text-align: center;
+    font-weight: bold;
+}
+@keyframes slideIn {
+    from{
+        x:-500px;
+    }
+    to{
+        x:0px;
+    }
+    
+}
+
+.loginOption{
+    transition:all 0.5s
+}
+.loginOption:hover{
+    filter:invert(1);
+}
