@@ -1,7 +1,7 @@
 .googleLogin{
     transition: all 0.8s;
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 100%;
     border-radius: 50%;
     margin-bottom: 20px;
   }
@@ -17,7 +17,7 @@
     animation: slideIn 1s ease;
 }
 .loginDiv:hover{
-    scale:1.2;
+    scale:0.8;
     transform: translateY(30px);
 }
 .loginDiv p{

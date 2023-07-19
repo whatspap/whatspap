@@ -2,11 +2,14 @@ import React from 'react'
 import {AppBar,Box,Dialog,Toolbar,Image} from '@mui/material'
 import './styles/LoginPage.css'
 import { GoogleLogin,useGoogleOneTapLogin } from '@react-oauth/google';
+import jwtDecode from 'jwt-decode'
+
 const LoginPage = () => {
 
 
-  const handleLoginSuccess = ()=>{console.log("logged in successfully")}
-  const handleLoginFailure =()=>{console.log("failed login")}
+  const handleLoginSuccess = (response)=>{console.log(
+    jwtDecode(response.credential))}
+  const handleLoginFailure =(response)=>{console.log(response)}
 
   return (
     <div>
