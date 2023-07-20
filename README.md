@@ -1,2 +1,2 @@
 # whatspap
-Whatsapp web clone
+Whatsapp web clone.
