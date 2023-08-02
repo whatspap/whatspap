@@ -41,7 +41,7 @@ const LoginPage = () => {
               justifyContent:"center",
               alignItems:"center",
               height: "90%",
-            backgroundColor:"whitesmoke"
+            backgroundColor:"#1f1f1f"
             ,minWidth:"80%",marginTop:"12vh",
           boxShadow:"none" } 
           }}
