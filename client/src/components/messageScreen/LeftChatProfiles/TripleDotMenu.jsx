@@ -15,11 +15,8 @@ export default function TripleDotMenu() {
 
     return (
         <div>
-            <Button
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+            <button
+               style={{border:"none"}}
                 onClick={handleClick}
                 sx={{
                 padding:"0px !important",
@@ -27,7 +24,7 @@ export default function TripleDotMenu() {
             }}
             >
                <MoreVert/>
-            </Button>
+            </button>
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -35,6 +32,14 @@ export default function TripleDotMenu() {
                 onClose={handleClose}
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
+                }}
+                anchorOrigin={{
+                    vertical:'bottom',
+                    horizontal:'center'
+                }}
+                transformOrigin={{
+                    vertical:"top",
+                    horizontal:"right"
                 }}
             >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
