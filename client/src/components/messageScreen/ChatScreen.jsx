@@ -48,7 +48,7 @@ const ChatScreen = () => {
                             minWidth:"250px",
                             width:"25%",
                             height:"100%",
-                            backgroundColor:"purple",
+                              backgroundColor:"#f6f6f6",
                             display:"flex",
                             justifyContent:"center"
                         }}

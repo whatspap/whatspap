@@ -1,52 +1,67 @@
-import { Box, Button } from '@mui/material'
-import React, { useContext } from 'react'
+import { Box } from '@mui/material'
+import React, {  useContext } from 'react'
 import LoginContext from '../../user-context/UserLoginContext'
-import { Chat,MoreVert,DonutLarge } from '@mui/icons-material'
-import SearchBar from './SearchBar'
+import { Chat, DonutLarge } from '@mui/icons-material'
 import TripleDotMenu from './TripleDotMenu'
+import ProfileDetailsDrawer from './ProfileDetailsDrawer'
+import { useDrawerContext } from './profile-drawer-manager/ProfileDetailsContext'
+
 
 const TopIcons = () => {
     const { currentUser, setCurrentUser } = useContext(LoginContext)
-    console.log(currentUser)
+    let [showDrawer, setshowDrawer] = useDrawerContext()
+    
+
+    function toggleDrawer() {
+        setshowDrawer(!showDrawer);
+        console.log(showDrawer)
+    }
 
     return (
-        <Box
-            sx={{
-                height: "50px",
-                backgroundColor: "whitesmoke",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "4px 15px",
-            }}
-        >
-            <img
-                src={currentUser.picture}
-                alt=""
-                style={{
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                }}
-            />
-            <Box
-                sx={{
-                    height: "100%",
-                    width:"70%",
-                    display: "flex",
-                    justifyContent: "right",
-                    alignItems: "center",
-                    gap:"10%"
-                }}
-            >
-               
-                    <DonutLarge color="black" height="100%" />
-                <Chat color="black" height="100%" />
-                    <TripleDotMenu />
+        <>
+            {showDrawer === false ? (
+                <Box
+                    sx={{
+                        height: "50px",
+                        backgroundColor: "whitesmoke",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "4px 15px",
+                    }}
+                >
+                    <img
+                        src={currentUser.picture}
+                        alt=""
+                        style={{
+                            borderRadius: "50%",
+                            height: "50px",
+                            width: "50px",
+                            cursor:'pointer'
+                        }}
+                        onClick={() => {
+                            toggleDrawer();
+                        }}
+                    />
+                    <Box
+                        sx={{
+                            height: "100%",
+                            width: "70%",
+                            display: "flex",
+                            justifyContent: "right",
+                            alignItems: "center",
+                            gap: "10%"
+                        }}
+                    >
+                        <DonutLarge color="black" height="100%" />
+                        <Chat color="black" height="100%" />
+                        <TripleDotMenu />
+                    </Box>
                 </Box>
-
-            
-        </Box>
+            ) : (
+                <ProfileDetailsDrawer />
+            )}
+        </>
     )
 }
 
