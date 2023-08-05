@@ -15,13 +15,14 @@ const ProfileDetailsDrawer = () => {
 
     return (
         <motion.div
+        className='drawerContainer'
             initial={{ x: '-100%' }} 
             animate={{ x: 0 }} 
             exit={{ x: '-100%' }} 
         >
             <Box
                 sx={{
-                    height: "91vh",
+                    height: "91.5vh",
                     width: "100%",
                     backgroundColor:"#e6e6e6",
                     zIndex: 3,
