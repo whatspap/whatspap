@@ -4,7 +4,7 @@ import './styles/LoginPage.css'
 import { GoogleLogin,useGoogleOneTapLogin } from '@react-oauth/google';
 import jwtDecode from 'jwt-decode'
 import LoginContext from '../user-context/UserLoginContext';
-import {addUser} from '../../apis/api.js'
+import {addUser, getUsers} from '../../apis/api.js'
 
 const LoginPage = () => {
 

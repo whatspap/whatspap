@@ -1,6 +1,5 @@
 import mongoose from "mongoose"
-import Users from "../models/userModel.js"
-
+import Users from "../models/userModel.js";
 export const addUser =async (req,res) =>{
     try {
         let checkPresence  = await Users.findOne({sub:req.body.sub})
@@ -17,4 +16,14 @@ export const addUser =async (req,res) =>{
     catch (error) {
         res.status(500).json(error.message);
     }    
+}
+
+export const getUsers = async(req,res)=>{
+    console.log("user data called")
+    try {
+        const allUsers = await Users.find();
+        return res.status(200).json(allUsers)
+    } catch (error) {
+        response.status(500).json(error.message) 
+    }
 }
