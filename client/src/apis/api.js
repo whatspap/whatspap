@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 export async function addUser(reqBody){
-    console.log("add user function called:",reqBody)
-    const endpoint = 'http://localhost:5000/add-user';
-
+    const url = 'http://localhost:5000';
+ 
     try {
-       await axios.post(endpoint,reqBody);
+        await axios.post(`${url}/add-user`,reqBody);
        console.log("request sent from client")
     } catch (error) {
         console.error("User not added successfully")

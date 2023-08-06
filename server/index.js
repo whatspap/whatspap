@@ -1,26 +1,22 @@
 import express from 'express';
 import dotenv from 'dotenv'
 import connectDB from './database/db.js'
-const app = express();
+import Router from './Router/routes.js';
+import cors from 'cors'
 dotenv.config();
-app.use(express.json());
+
+const app = express();
 
 
-app.get("/",(req,res)=>{
-    res.send("hello")
-    
-})
-
-app.post("/add-user",(req,res)=>{
-    console.log(req.body)
-})
+app.use(cors());//
+app.use(express.urlencoded({ extended: true }));
+ app.use(express.json());
 
 
-
-const PORT_NUMBER = 5000
+app.use('/',Router);//this Router is not express Router, it is the router from routes.js
 
 connectDB().then(() => {
-    app.listen(process.env.PORT_NUMBER, () => {
-        console.log("server is up at ",PORT_NUMBER)
+    app.listen(process.env.PORT, () => {
+        console.log("server is up at ",process.env.PORT)
     })
 })
