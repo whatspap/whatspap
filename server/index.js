@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.get("/",(req,res)=>{
     res.send("hello")
+    
 })
 
 app.post("/add-user",(req,res)=>{
@@ -19,7 +20,7 @@ app.post("/add-user",(req,res)=>{
 const PORT_NUMBER = 5000
 
 connectDB().then(() => {
-    app.listen(PORT_NUMBER, () => {
+    app.listen(process.env.PORT_NUMBER, () => {
         console.log("server is up at ",PORT_NUMBER)
     })
 })
