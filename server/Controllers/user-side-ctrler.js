@@ -27,3 +27,4 @@ export const getUsers = async(req,res)=>{
         response.status(500).json(error.message) 
     }
 }
+

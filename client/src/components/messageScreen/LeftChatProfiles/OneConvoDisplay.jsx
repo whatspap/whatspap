@@ -1,12 +1,16 @@
 import { Box } from '@mui/material'
 import React, { useContext } from 'react'
 import LoginContext from '../../user-context/UserLoginContext'
+import { setConversation } from '../../../apis/api'
+
 
 const OneConvoDisplay = ({user}) => {
-    const {currentChatter,setCurrentChatter} = useContext(LoginContext);
+    const {currentChatter,setCurrentChatter,currentUser} = useContext(LoginContext);
 
-    function showUserInfo(){
+    async function showUserInfo(){
+
         setCurrentChatter(user)
+        await setConversation({senderID:currentUser.sub,receiverID:user.sub})
     }
   return (
       <Box

@@ -20,7 +20,20 @@ export async function getUsers(){
         console.log("getusers sent")
        return response.data;
     } catch (error) {
-        console.error("User not added successfully")
+        console.error("all users data not fetched successfully")
+        console.log(error)
+
+    }
+}
+
+export async function setConversation(idObj){
+    const url = 'http://localhost:5000';
+    //to create a new conversation between sender and receiver id;
+    try {
+        await axios.post(`${url}/conversation/add`,idObj); 
+        console.log("setconversation sent")
+    } catch (error) {
+        console.error("conversation not set successfully")
         console.log(error)
 
     }
