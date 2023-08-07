@@ -2,6 +2,7 @@ import { Box, Dialog, Toolbar } from '@mui/material'
 import React from 'react'
 import LeftMenu from './LeftChatProfiles/LeftMenu'
 import EmptyChat from './RightChatDisplay/EmptyChat';
+import ChatDisplay from './RightChatDisplay/ChatDisplay';
 
 const ChatScreen = () => {
   return (
@@ -66,7 +67,7 @@ const ChatScreen = () => {
                           display:"flex",
                           justifyContent:"center"
                       }}>
-                       <EmptyChat/>
+                       <ChatDisplay/>
                     </Box>
                   </Box>
                 </Dialog>
