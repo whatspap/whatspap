@@ -32,9 +32,12 @@ const Conversations = () => {
 
                 height:"9%",
                 border:"1px solid grey",
-                backgroundColor:"whitesmoke"
+                backgroundColor:"whitesmoke",
+                display:"flex",
+                alignItems:"center"
             }}    
             >
+                <img src={item.picture} style={{height:"50px",borderRadius:"50%"}}alt="" />
                 {item.name}
 
             </Box>
