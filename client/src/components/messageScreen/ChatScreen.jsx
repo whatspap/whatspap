@@ -1,10 +1,13 @@
 import { Box, Dialog, Toolbar } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import LeftMenu from './LeftChatProfiles/LeftMenu'
 import EmptyChat from './RightChatDisplay/EmptyChat';
 import ChatDisplay from './RightChatDisplay/ChatDisplay';
+import LoginContext from '../user-context/UserLoginContext';
 
 const ChatScreen = () => {
+
+  const {currentChatter} = useContext(LoginContext);
   return (
     <div>
 
@@ -67,7 +70,8 @@ const ChatScreen = () => {
                           display:"flex",
                           justifyContent:"center"
                       }}>
-                       <ChatDisplay/>
+
+                       {currentChatter===undefined?<EmptyChat/>:<ChatDisplay/>}
                     </Box>
                   </Box>
                 </Dialog>

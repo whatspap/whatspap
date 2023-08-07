@@ -5,13 +5,16 @@ import { More, MoreVert, Search } from '@mui/icons-material'
 
 
 const ChatDisplayHeader = () => {
-    const {currentUser,setCurrentUser} = useContext(LoginContext);
+    const {currentUser,setCurrentUser,currentChatter} = useContext(LoginContext);
+    console.log(currentChatter)
     return (
     <Box
     sx={{
-        height:"9%",
+        height:"8%",
         width:"100%",
         color:"white",
+                backgroundColor: "royalblue"
+        
         
 }}
 >
@@ -23,9 +26,9 @@ const ChatDisplayHeader = () => {
     {/* left side box below */}
     <Box sx={{display:"flex"}}>
 
-    <img src= {currentUser.picture} style={{height:"50px",borderRadius:"50%"}}srcset="" />
-    <Box sx={{color:"white",fontSize:"15px",display:"flex",flexDirection:"column",gap:"5px",margin:"4px"}}>
-                        <span style={{ fontSize: "16px" }}>Apoorva Pendse</span>
+    <img src= {currentChatter.picture} style={{height:"50px",borderRadius:"50%"}}srcset="" />
+    <Box sx={{color:"white",fontSize:"15px",display:"flex",flexDirection:"column",gap:"5px",margin:"4px",}}>
+                        <span style={{ fontSize: "16px" }}>{currentChatter.name}</span>
                         <span style={{ fontSize: "11.5px" }}>Online</span>
     </Box>
     </Box>
