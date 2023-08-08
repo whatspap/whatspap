@@ -16,6 +16,7 @@ const Conversations = ({query}) => {
             console.log("query:",query)
             let users = await getUsers();
             let filteredUsers = users.filter((user)=>user.name.toLowerCase().includes(query.toLowerCase()))
+            
             console.log(filteredUsers)
             setUsers(filteredUsers);
         }
