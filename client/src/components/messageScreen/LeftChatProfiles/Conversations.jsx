@@ -5,7 +5,7 @@ import LoginContext from '../../user-context/UserLoginContext';
 import OneConvoDisplay from './OneConvoDisplay';
 
 
-const Conversations = () => {
+const Conversations = ({query}) => {
     const [users,setUsers] = useState([]);
     const{currentUser,setCurrentUser} = useContext(LoginContext);
     console.log("currentUser",currentUser.name)
@@ -13,15 +13,17 @@ const Conversations = () => {
     useEffect(() => {
       //this will run when component mounts
         const fetchAllUsers = async()=>{
-
+            console.log("query:",query)
             let users = await getUsers();
-            setUsers(users);
+            let filteredUsers = users.filter((user)=>user.name.toLowerCase().includes(query.toLowerCase()))
+            console.log(filteredUsers)
+            setUsers(filteredUsers);
         }
         fetchAllUsers();
     
     
       
-    }, [])
+    }, [query])
     
 
   return (
