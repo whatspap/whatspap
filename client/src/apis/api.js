@@ -38,3 +38,14 @@ export async function setConversation(idObj){
 
     }
 }
+
+export async function getConvo(senderID,receiverID){
+    const url = 'http://localhost:5000';
+    try {
+       let response = await axios.post(`${url}/conversation/getconvo`,{senderID,receiverID})
+       return response.data;
+
+    } catch (error) {
+        console.log("error from get convo")
+    }
+}

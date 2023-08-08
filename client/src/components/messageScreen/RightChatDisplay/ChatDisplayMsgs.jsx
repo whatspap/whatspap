@@ -1,8 +1,26 @@
 // This will display all the messages for selected chat
 import { Box } from '@mui/material'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { getConvo } from '../../../apis/api'
+import LoginContext from '../../user-context/UserLoginContext'
 
-const ChatDisplayMsgs = () => {
+const ChatDisplayMsgs = ({sender,receiver}) => {
+    const {convo,setConvo} = useContext(LoginContext)
+
+    useEffect(() => {
+        
+      
+        let getConvoDetails = async()=>{
+
+           let previousMessages = await getConvo(sender,receiver);
+           console.log(previousMessages)
+           setConvo(previousMessages)
+        }
+        getConvoDetails();
+      
+    },[receiver] )
+    
+
   return (
     <Box
         sx={{

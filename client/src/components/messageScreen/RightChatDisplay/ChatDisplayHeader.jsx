@@ -6,7 +6,6 @@ import { More, MoreVert, Search } from '@mui/icons-material'
 
 const ChatDisplayHeader = () => {
     const {currentUser,setCurrentUser,currentChatter} = useContext(LoginContext);
-    console.log(currentChatter)
     return (
     <Box
     sx={{

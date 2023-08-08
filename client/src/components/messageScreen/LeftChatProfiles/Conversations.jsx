@@ -15,10 +15,18 @@ const Conversations = ({query}) => {
         const fetchAllUsers = async()=>{
             console.log("query:",query)
             let users = await getUsers();
-            let filteredUsers = users.filter((user)=>user.name.toLowerCase().includes(query.toLowerCase()))
+            if(query!=undefined){
+
+                let filteredUsers = users.filter((user)=>user.name.toLowerCase().includes(query.toLowerCase()))
+                setUsers(filteredUsers);
+            }
+            else{
+
+                setUsers(users);
+            }
+           
             
-            console.log(filteredUsers)
-            setUsers(filteredUsers);
+            
         }
         fetchAllUsers();
     
