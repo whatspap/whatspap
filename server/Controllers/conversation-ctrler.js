@@ -38,6 +38,7 @@ export const getPreviousConvos = async (req, res) => {
 
 }
 export const addNewMessage = async(req,res)=>{
+   console.log(req.body)
    try {
       const newMessage = new Message({
          text:req.body.message.text,

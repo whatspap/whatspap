@@ -13,19 +13,19 @@ const ChatDisplay = () => {
   const { convo, setConvo } = useContext(LoginContext)
   const [message, setMessage] = useState("");
 
+  let messages = [];
   useEffect(() => {
-    const getPrevMessages = async()=>{
-      const messages = await getMessages(convo._id);
-      console.log("messages:",messages)
-    }
-    getPrevMessages();
+   
   }, [convo])
   
 
   async function sendText(keyPressCode,message){
     if(keyPressCode==13){
       console.log(convo._id,message)
+      console.log("message sent from ",currentUser.name," to",currentChatter.name);
       let msg = {
+        senderName:currentUser.name,
+        receiverName:currentChatter.name,
         senderID: currentUser.sub,
         receiverID: currentChatter.sub,
         conversationID:convo._id,

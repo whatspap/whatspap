@@ -60,6 +60,7 @@ export async function newMessage(message){
     }
 }
 
+
 export async function getMessages(convoID){
     console.log("get messages called")
     const url = 'http://localhost:5000';

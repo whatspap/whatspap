@@ -1,7 +1,9 @@
 import { Box, InputBase, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, {  } from 'react'
 import {Search, EmojiEmotionsOutlined,AttachFile} from '@mui/icons-material'
 import MicIcon from '@mui/icons-material/Mic';
+import LoginContext from '../../user-context/UserLoginContext';
+
 
 const ChatInputBox = ({sendText,setMessage,message}) => {
   
