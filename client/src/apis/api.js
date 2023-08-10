@@ -49,3 +49,25 @@ export async function getConvo(senderID,receiverID){
         console.log("error from get convo")
     }
 }
+export async function newMessage(message){
+    const url = 'http://localhost:5000';
+    try {
+        let response = await axios.post(`${url}/message/add`,{message})
+        return response.data;
+        
+    } catch (error) {
+        console.log("error from get convo")
+    }
+}
+
+export async function getMessages(convoID){
+    console.log("get messages called")
+    const url = 'http://localhost:5000';
+    try {
+        let response = await axios.get(`${url}/message/get/${convoID}`)
+        return response.data;
+
+    } catch (error) {
+        console.log("error from get messages")
+    }
+}

@@ -1,9 +1,10 @@
 import { Box } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ChatDisplayHeader from './ChatDisplayHeader'
 import ChatDisplayMsgs from './ChatDisplayMsgs'
 import ChatInputBox from './ChatInputBox'
 import LoginContext from '../../user-context/UserLoginContext'
+import { getMessages, newMessage } from '../../../apis/api.js'
 
 
 const ChatDisplay = () => {
@@ -12,8 +13,16 @@ const ChatDisplay = () => {
   const { convo, setConvo } = useContext(LoginContext)
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    const getPrevMessages = async()=>{
+      const messages = await getMessages(convo._id);
+      console.log("messages:",messages)
+    }
+    getPrevMessages();
+  }, [convo])
+  
 
-  function sendText(keyPressCode,message){
+  async function sendText(keyPressCode,message){
     if(keyPressCode==13){
       console.log(convo._id,message)
       let msg = {
@@ -21,10 +30,12 @@ const ChatDisplay = () => {
         receiverID: currentChatter.sub,
         conversationID:convo._id,
         type:'text',
-        message:message
+        text:message
       }
 
-      console.log(msg)
+    await newMessage(msg);
+    setMessage("")
+    
     }
 
   }

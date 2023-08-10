@@ -12,11 +12,13 @@ const ChatDisplayMsgs = ({sender,receiver}) => {
       
         let getConvoDetails = async()=>{
 
-           let previousMessages = await getConvo(sender,receiver);
-           console.log(previousMessages)
-           setConvo(previousMessages)
+           let convoDetails = await getConvo(sender,receiver);
+           console.log(convoDetails)
+           setConvo(convoDetails)
         }
         getConvoDetails();
+
+        
       
     },[receiver] )
     
