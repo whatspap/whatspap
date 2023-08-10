@@ -12,14 +12,23 @@ const ChatDisplay = () => {
   const {currentUser,currentChatter} = useContext(LoginContext);
   const { convo, setConvo } = useContext(LoginContext)
   const [message, setMessage] = useState("");
+  const [previousMessages, setPreviousMessages] = useState([]);
+
 
   let messages = [];
   useEffect(() => {
-   
-  }, [convo])
+    const getPrevMessages = async () => {
+
+      let messages = await getMessages(convo._id);
+      setPreviousMessages(messages)
+      console.log(previousMessages)
+    }
+    getPrevMessages();
+  }, [convo,message])
   
 
   async function sendText(keyPressCode,message){
+
     if(keyPressCode==13){
       console.log(convo._id,message)
       console.log("message sent from ",currentUser.name," to",currentChatter.name);
@@ -48,8 +57,8 @@ const ChatDisplay = () => {
         }}
     >
        <ChatDisplayHeader/>
-       <ChatDisplayMsgs sender={currentUser.sub} receiver={currentChatter.sub}/>
-       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message}/>
+       <ChatDisplayMsgs sender={currentUser.sub} receiver={currentChatter.sub} previousMessages={previousMessages} />
+       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message} />
     </Box>
 
   )

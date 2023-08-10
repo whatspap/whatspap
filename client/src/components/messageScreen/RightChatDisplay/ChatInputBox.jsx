@@ -36,7 +36,7 @@ const ChatInputBox = ({sendText,setMessage,message}) => {
       onChange={(e)=>{
         setMessage(e.target.value)
       }}
-      onKeyDown={(e)=>{sendText(e.keyCode,message)}}
+      onKeyDown={(e)=>{sendText(e.keyCode,message);setMessage(message)}}
       />
       <MicIcon/>
       </Box>

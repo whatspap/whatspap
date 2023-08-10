@@ -1,14 +1,15 @@
 // This will display all the messages for selected chat
 import { Box } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { getConvo, getMessages } from '../../../apis/api'
 import LoginContext from '../../user-context/UserLoginContext'
 import { Typography } from '@mui/material';
 
-const ChatDisplayMsgs = ({sender,receiver}) => {
+const ChatDisplayMsgs = ({sender,receiver,previousMessages}) => {
+    const scrollRef = useRef(null);
     const {convo,setConvo,currentUser} = useContext(LoginContext)
     
-    const [previousMessages, setPreviousMessages] = useState([]);
+
 
     useEffect(() => {
         console.log("receiver changed to",receiver)
@@ -21,13 +22,11 @@ const ChatDisplayMsgs = ({sender,receiver}) => {
             setConvo(convoDetails)
         }
         getConvoDetails();
-        const getPrevMessages = async () => {
-            
-            let messages = await getMessages(convo._id);
-            setPreviousMessages(messages)
-            console.log(previousMessages)
+
+        if (scrollRef.current) {
+            scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" })
         }
-        getPrevMessages();
+        
         
         
     },[receiver] )
@@ -35,6 +34,8 @@ const ChatDisplayMsgs = ({sender,receiver}) => {
 
   return (
     <Box
+    
+          
         sx={{
             
             color:"white",
@@ -63,7 +64,9 @@ const ChatDisplayMsgs = ({sender,receiver}) => {
            
 
         {previousMessages && previousMessages.map(message=>(
-            <Box sx={{
+            <Box 
+            ref={ scrollRef }
+            sx={{
                 display:"flex",
                 flexDirection:'column'
             }}>
