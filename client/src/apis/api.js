@@ -72,3 +72,14 @@ export async function getMessages(convoID){
         console.log("error from get messages")
     }
 }
+
+export async function uploadFile(data){
+    
+    const url = 'http://localhost:5000';
+    try {
+        return await axios.post(`${url}/file/upload/`,data);
+
+    } catch (error) {
+        console.log("error sending file...")
+    }
+}

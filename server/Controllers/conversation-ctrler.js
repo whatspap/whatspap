@@ -38,7 +38,6 @@ export const getPreviousConvos = async (req, res) => {
 
 }
 export const addNewMessage = async(req,res)=>{
-   console.log(req.body)
    try {
       const newMessage = new Message({
          text:req.body.message.text,
@@ -63,8 +62,6 @@ export const addNewMessage = async(req,res)=>{
 export const getMessages = async(req,res) => {
    try {
       const messages = await Message.find({conversationID:req.params.convoID})
-      console.log(req.params.convoID);
-      console.log(messages)
       return res.status(200).json(messages);
    } catch (error) {
       return res.status(500).json(error);

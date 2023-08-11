@@ -13,6 +13,7 @@ const ChatDisplay = () => {
   const { convo, setConvo } = useContext(LoginContext)
   const [message, setMessage] = useState("");
   const [previousMessages, setPreviousMessages] = useState([]);
+  const [file,setFile] = useState();
 
 
   let messages = [];
@@ -58,7 +59,7 @@ const ChatDisplay = () => {
     >
        <ChatDisplayHeader/>
        <ChatDisplayMsgs sender={currentUser.sub} receiver={currentChatter.sub} previousMessages={previousMessages} />
-       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message} />
+       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message} file={file} setFile = {setFile}/>
     </Box>
 
   )
