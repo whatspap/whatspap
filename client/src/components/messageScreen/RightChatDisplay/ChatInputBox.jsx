@@ -1,11 +1,36 @@
 import { Box, InputBase, TextField } from '@mui/material'
-import React, {  } from 'react'
+import React, { useEffect } from 'react'
 import {Search, EmojiEmotionsOutlined,AttachFile} from '@mui/icons-material'
 import MicIcon from '@mui/icons-material/Mic';
 import LoginContext from '../../user-context/UserLoginContext';
+import { uploadFile } from '../../../apis/api';
 
 
-const ChatInputBox = ({sendText,setMessage,message}) => {
+const ChatInputBox = ({sendText,setMessage,message,file,setFile}) => {
+
+
+  useEffect(() => {
+    const setImage = async() =>{
+      if(file){
+        const data = new FormData();
+        data.append("name",file.name);
+        data.append("file",file);
+        
+        await uploadFile(data);
+      }
+    }
+  setImage();
+  
+  }, [file])
+  
+
+
+  const handleFileChange = (e) =>{
+    setFile(e.target.files[0])
+    setMessage(e.target.files[0].name);
+    console.log(file)
+
+  }
   
   return (
     <Box
@@ -18,8 +43,17 @@ const ChatInputBox = ({sendText,setMessage,message}) => {
     }}
     >
       <EmojiEmotionsOutlined/>
+
+      <label htmlFor="FileInput">
+
       <AttachFile/>
+      </label>
+      <input type="file" name="" id="FileInput" style={{display:"none"}}
       
+      onChange={(e)=>{handleFileChange(e)}}
+      />
+
+
       <InputBase
       size='small'
       variant="standard"
@@ -36,7 +70,7 @@ const ChatInputBox = ({sendText,setMessage,message}) => {
       onChange={(e)=>{
         setMessage(e.target.value)
       }}
-      onKeyDown={(e)=>{sendText(e.keyCode,message)}}
+      onKeyDown={(e)=>{sendText(e.keyCode,message);setMessage(message)}}
       />
       <MicIcon/>
       </Box>
