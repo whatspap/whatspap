@@ -14,6 +14,8 @@ const ChatDisplay = () => {
   const [message, setMessage] = useState("");
   const [previousMessages, setPreviousMessages] = useState([]);
   const [file,setFile] = useState();
+  const [image, setImage] = useState('');
+
 
 
   let messages = [];
@@ -31,20 +33,35 @@ const ChatDisplay = () => {
   async function sendText(keyPressCode,message){
 
     if(keyPressCode==13){
-      console.log(convo._id,message)
-      console.log("message sent from ",currentUser.name," to",currentChatter.name);
-      let msg = {
-        senderName:currentUser.name,
-        receiverName:currentChatter.name,
-        senderID: currentUser.sub,
-        receiverID: currentChatter.sub,
-        conversationID:convo._id,
-        type:'text',
-        text:message
+      let msg={};
+      if(!file){
+
+         msg = {
+          senderName:currentUser.name,
+          receiverName:currentChatter.name,
+          senderID: currentUser.sub,
+          receiverID: currentChatter.sub,
+          conversationID:convo._id,
+          type:'text',
+          text:message
+        }
+      }else{
+        msg = {
+          senderName: currentUser.name,
+          receiverName: currentChatter.name,
+          senderID: currentUser.sub,
+          receiverID: currentChatter.sub,
+          conversationID: convo._id,
+          type: 'file',
+          text: image
+        }
       }
 
     await newMessage(msg);
     setMessage("")
+    setImage("");
+    setFile("")
+
     
     }
 
@@ -59,7 +76,7 @@ const ChatDisplay = () => {
     >
        <ChatDisplayHeader/>
        <ChatDisplayMsgs sender={currentUser.sub} receiver={currentChatter.sub} previousMessages={previousMessages} />
-       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message} file={file} setFile = {setFile}/>
+       <ChatInputBox sendText = {sendText} setMessage={setMessage} message={message} file={file} setFile = {setFile} setImage={setImage}/>
     </Box>
 
   )

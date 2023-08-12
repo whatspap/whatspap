@@ -1,25 +1,26 @@
 import { Box, InputBase, TextField } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Search, EmojiEmotionsOutlined,AttachFile} from '@mui/icons-material'
 import MicIcon from '@mui/icons-material/Mic';
 import LoginContext from '../../user-context/UserLoginContext';
 import { uploadFile } from '../../../apis/api';
 
 
-const ChatInputBox = ({sendText,setMessage,message,file,setFile}) => {
-
+const ChatInputBox = ({sendText,setMessage,message,file,setFile,setImage}) => {
+ 
 
   useEffect(() => {
-    const setImage = async() =>{
+    const setFile = async() =>{
       if(file){
         const data = new FormData();
         data.append("name",file.name);
         data.append("file",file);
         
-        await uploadFile(data);
+       let res =  await uploadFile(data);
+       setImage(res.data);
       }
     }
-  setImage();
+  setFile();
   
   }, [file])
   
